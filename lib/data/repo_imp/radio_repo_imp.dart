@@ -1,11 +1,11 @@
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:islami/core/config/failure/failure.dart';
-import 'package:islami/data/data_source/radio_data_source.dart';
-import 'package:islami/data/models/radio_model_response.dart';
+import 'package:dartz/dartz.dart';
 import 'package:islami/domin/repo/radio_repo.dart';
-
 import '../../core/config/failure/server_failure.dart';
+import 'package:islami/core/config/failure/failure.dart';
+import 'package:islami/data/models/radio_model_response.dart';
+import 'package:islami/data/data_source/radio_data_source.dart';
+
 
 class RadioRepoImp extends RadioRepo{
 
@@ -14,16 +14,12 @@ class RadioRepoImp extends RadioRepo{
   RadioRepoImp(this.radioDataSource);
 
   @override
-  Future<Either<Failure,List<RadioModelResponse>>> getRadioData() async{
+  Future<Either<Failure,RadioModelResponse>> getRadioData() async{
       final response = await radioDataSource.getRadioData();
-      print(response);
+      late RadioModelResponse radioModel;
       try{
         if(response.statusCode == 200){
-          List<RadioModelResponse> radioModel = [];
-          var radioResponseList = response.data["radios"] as List ;
-          for(var e in radioResponseList){
-            radioModel.add(RadioModelResponse.fromJson(e));
-          }
+          radioModel=RadioModelResponse.fromJson(response.data);
           return right(radioModel);
         }
         else {

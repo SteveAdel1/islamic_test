@@ -9,8 +9,8 @@ class LoadingRadioState extends RadioStates{}
 
 class SuccessRadioState extends RadioStates{
 
-  List<RadioModelResponse>? radioList ;
-  SuccessRadioState(this.radioList);
+  RadioModelResponse radioList;
+  SuccessRadioState({required this.radioList});
 }
 
 class ErrorRadioState extends RadioStates{

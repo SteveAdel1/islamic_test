@@ -21,7 +21,7 @@ class Radios {
 }
 
 
-class RadioModelResponse extends Radios{
+class RadioModelResponse{
 
   List<Radios>? radios;
 
@@ -29,7 +29,7 @@ class RadioModelResponse extends Radios{
       this.radios,});
 
   RadioModelResponse.fromJson(dynamic json) {
-    if (json['radios'] != null) {
+    if (json != null) {
       radios = [];
       json['radios'].forEach((v) {
         radios?.add(Radios.fromJson(v));

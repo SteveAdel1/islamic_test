@@ -15,24 +15,27 @@ class RadioPageWidget extends StatefulWidget {
 class _RadioPageWidgetState extends State<RadioPageWidget> {
   @override
   Widget build(BuildContext context) {
-    //var vm = BlocProvider.of<RadioCubit>(context);
+    var vm = RadioCubit();
+
+    // var vm = BlocProvider.of<RadioCubit>(context);
     return BlocProvider(
-      create: (context) => RadioCubit(),
+      create: (context) => vm,
       child: BlocBuilder<RadioCubit,RadioStates>(
-        bloc: RadioCubit(),
+        bloc: vm,
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.only(top: 80,
                 left: 10,
                 right: 10,
                 bottom: 10),
-            child: Column(children: [
+            child: ListView(children: [
               Image.asset("assets/images/radio.png"),
               SizedBox(
                 height: 80,
-              ),
+              ),  
               Text(textAlign: TextAlign.center,
-                  RadioCubit().radios![RadioCubit().currentIndex].name ?? " "
+                  // state.radios![vm.currentIndex].name ?? " asfsdfsdfs"
+                  " asfsdfsdfs"
               ),
               SizedBox(
                 height: 80,
@@ -47,6 +50,7 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
               )
             ]),
           );
+        
         },
 
       ),
