@@ -53,6 +53,7 @@ class _RadioViewState extends State<RadioView> {
                         SizedBox(
                           height: 80,
                         ),
+                        
                         Text(
                             textAlign: TextAlign.center,
                             state.radioList.radios?[0].name ??
